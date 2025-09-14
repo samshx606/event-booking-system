@@ -1,0 +1,18 @@
+package com.worex.swe.bookingsystem.service.user_service;
+
+import com.worex.swe.bookingsystem.dto.login.LoginRequestDTO;
+import com.worex.swe.bookingsystem.dto.login.LoginResponseDTO;
+import com.worex.swe.bookingsystem.dto.user.UserRequestDTO;
+import com.worex.swe.bookingsystem.dto.user.UserResponseDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+public interface UserService {
+    UserResponseDTO getUserById(Long id);
+    Page<UserResponseDTO> getAllUsers(Pageable pageable);
+    UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO);
+    void deleteUser(Long id);
+    UserResponseDTO register(UserRequestDTO userRequestDTO);
+    LoginResponseDTO login(LoginRequestDTO loginRequestDTO);
+    UserResponseDTO viewProfile(UserDetails userDetails);
+}
