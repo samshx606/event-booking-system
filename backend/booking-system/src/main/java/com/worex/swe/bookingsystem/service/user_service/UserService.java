@@ -12,7 +12,9 @@ public interface UserService {
     Page<UserResponseDTO> getAllUsers(Pageable pageable);
     UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO);
     void deleteUser(Long id);
+    void deleteProfile(String username);
     UserResponseDTO register(UserRequestDTO userRequestDTO);
     LoginResponseDTO login(LoginRequestDTO loginRequestDTO);
     UserResponseDTO viewProfile(UserDetails userDetails);
+    UserResponseDTO makeAdmin(String username);
 }

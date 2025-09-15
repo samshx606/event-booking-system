@@ -61,6 +61,14 @@ public class UserServiceImpl implements UserService{
         }
         userRepository.deleteById(id);
     }
+    @Override
+    @Transactional
+    public void deleteProfile(String username) {
+        if (!userRepository.existsByUsername(username)) {
+            throw new ResourceNotFoundException("User not found with username: " + username);
+        }
+        userRepository.deleteByUsername(username);
+    }
 
     @Override
     @Transactional
@@ -78,7 +86,7 @@ public class UserServiceImpl implements UserService{
         if (!passwordEncoder.matches(loginRequestDTO.getPassword(), user.getPasswordHash())) {
             throw new UnauthorizedException("Invalid username or password");
         }
-        String token = jwtTokenProvider.generateToken(user.getUsername());
+        String token = jwtTokenProvider.generateToken(user);
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
         loginResponseDTO.setUsername(user.getUsername());
         loginResponseDTO.setEmail(user.getEmail());
@@ -93,6 +101,13 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.findByUsername(userDetails.getUsername()).orElseThrow(
                 ()-> new ResourceNotFoundException("User not found with username: " + userDetails.getUsername()));
         return userMapper.toResponseDTO(user);
+    }
+    public UserResponseDTO makeAdmin(String username){
+        User user = userRepository.findByUsername(username).orElseThrow(
+                ()-> new ResourceNotFoundException("User not found with username: " + username));
+        user.setRole(Role.ADMIN);
+        User updatedUser = userRepository.save(user);
+        return userMapper.toResponseDTO(updatedUser);
     }
 
 }

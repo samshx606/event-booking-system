@@ -37,34 +37,32 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {})
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
 
-                        // 🛠️ Admin APIs
-                        .requestMatchers("admin/**").hasRole("ADMIN")
+                        // User APIs
+                        .requestMatchers("/api/users/me").hasRole("USER")
+                        .requestMatchers("/api/users/**").hasRole("ADMIN")
 
-                        // 🔓 Auth APIs
-                        .requestMatchers("/auth/register", "/auth/login").permitAll()
-                        .requestMatchers("/auth/logout").authenticated()
+                        // Admin APIs
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
-                        // 👤 User APIs
-                        .requestMatchers("/api/users/**").hasRole("USER")
+                        // Auth APIs
+                        .requestMatchers(HttpMethod.POST, "/api//auth/logout").authenticated()
+                        .requestMatchers("/api/auth/*").permitAll()
 
-                        // 🎟️ Booking APIs (only authenticated users)
-                        .requestMatchers(HttpMethod.POST, "/api/bookings").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/api/bookings/**").hasRole("USER")
+                        // Event APIs
+                        .requestMatchers(HttpMethod.GET, "/api/events/**").permitAll()
+                        .requestMatchers("/api/events/**").hasRole("ADMIN")
 
-                        // 🎉 Event APIs
-                        .requestMatchers(HttpMethod.GET, "/api/events/**").permitAll() // anyone can view events
-                        .requestMatchers(HttpMethod.POST, "/api/events").hasRole("ADMIN") // only admins create
-                        .requestMatchers(HttpMethod.PUT, "/api/events/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/events/**").hasRole("ADMIN")
+                        // Booking APIs (only authenticated users)
+                        .requestMatchers("/api/bookings/**").hasRole("USER")
 
                         // swagger
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**",
                                 "/swagger-ui.html", "/swagger-ui/index.html").permitAll()
 
-                        // Any other request → authenticated
                         .anyRequest().authenticated()
                 );
 
