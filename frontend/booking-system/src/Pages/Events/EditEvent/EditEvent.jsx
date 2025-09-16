@@ -58,7 +58,7 @@ function EditEvent() {
       const formattedForm = { ...form, date: new Date(form.date).toISOString() };
       await updateEvent(id, formattedForm);
       setMessage({ text: "Event updated successfully!", type: "success" });
-      setTimeout(() => navigate("/admins/events"), 2000);
+      setTimeout(() => navigate("/admin/events"), 2000);
     } catch (err) {
       setMessage({ text: err.response?.data?.message || "Failed to update event.", type: "error" });
     } finally {
@@ -169,7 +169,7 @@ function EditEvent() {
           />
         </div>
         <div className="form-actions">
-          <button type="button" className="btn-secondary" onClick={() => navigate('/admins/events')}>
+          <button type="button" className="btn-secondary" onClick={() => navigate('/admin/events')}>
             Cancel
           </button>
           <button type="submit" className="btn-primary" disabled={loading}>

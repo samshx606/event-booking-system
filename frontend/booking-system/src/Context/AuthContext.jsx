@@ -11,7 +11,25 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = cookies.get("token");
-    if (token) setIsLoggedIn(true);
+    if (token) {
+      setIsLoggedIn(true);
+    const fetchUserData = async () => {
+      try {
+        const response = await yourAPI.getMyProfile();
+        setUser({
+          id: response.id,
+          role: response.role,
+          username: response.username
+        });
+      } catch (error) {
+        console.error("Failed to get user info:", error);
+        cookies.remove("token", { path: "/" });
+        setIsLoggedIn(false);
+      }
+    };
+    
+    fetchUserData();
+    }
   }, []);
 
   const login = async (form) => {

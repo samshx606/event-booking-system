@@ -24,14 +24,7 @@ function AdminDashboard() {
             <Link to="/admin/users" className="admin-btn secondary">View Users</Link>
           </div>
         </div>
-        
-        {/* <div className="admin-card">
-          <h3>Booking Management</h3>
-          <p>View and manage event bookings across the platform.</p>
-          <div className="admin-card-actions">
-            <Link to="/admins/bookings" className="admin-btn secondary">View Bookings</Link>
-          </div>
-        </div> */}
+
       </div>
     </div>
   );

@@ -60,7 +60,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Error state */
+
 .error {
   text-align: center;
   padding: 2rem;
@@ -72,7 +72,7 @@
   font-size: 1.1rem;
 }
 
-/* No events message */
+
 .no-events {
   grid-column: 1 / -1;
   text-align: center;
@@ -83,7 +83,7 @@
   font-size: 1.2rem;
 }
 
-/* Pagination styles */
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -127,7 +127,7 @@
   border-radius: 20px;
 }
 
-/* Responsive design */
+
 @media (max-width: 768px) {
   .event-list-container {
     padding: 1.5rem;

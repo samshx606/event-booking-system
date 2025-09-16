@@ -34,7 +34,6 @@ function Card({ type, data  }) {
     }
   };
 
-  // Render Event Card
   if (type === 'event') {
     return (
       <div className="card event-card" >

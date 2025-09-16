@@ -78,7 +78,7 @@
   color: #667eea;
 }
 
-/* Card footer */
+
 .card-footer {
   display: flex;
   justify-content: space-between;
@@ -95,7 +95,7 @@
   color: #7f8c8d;
 }
 
-/* Card actions and buttons */
+
 .card-actions {
   display: flex;
   gap: 8px;
@@ -126,7 +126,7 @@
   transform: translateY(-2px);
 }
 
-/* Status styles */
+
 .card-status {
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
@@ -150,7 +150,7 @@
   color: #e02424;
 }
 
-/* Button styles */
+
 .card-button {
   background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -168,7 +168,7 @@
   box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
 }
 
-/* Booking card specific styles */
+
 .booking-card .card-details {
   gap: 0.5rem;
 }
@@ -177,7 +177,7 @@
   padding-top: 1.2rem;
 }
 
-/* Responsive design */
+
 @media (max-width: 768px) {
   .card-content {
     padding: 1.2rem;

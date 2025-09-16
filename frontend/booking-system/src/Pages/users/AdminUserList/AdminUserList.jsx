@@ -47,8 +47,15 @@ function AdminUserList() {
     if (window.confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
       try {
         await deleteUser(id);
-        setUsers(users.filter((user) => user.id !== id));
-        setRefreshTrigger(prev => prev + 1);
+        
+        const updatedUsers = users.filter((user) => user.id !== id);
+        setUsers(updatedUsers);
+        
+        if (updatedUsers.length === 0 && page > 0) {
+          setPage(page - 1);
+        } else {
+          setRefreshTrigger(prev => prev + 1);
+        }
       } catch (err) {
         console.error('Error deleting user:', err);
         alert('Failed to delete user. Please try again.');

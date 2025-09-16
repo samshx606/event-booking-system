@@ -45,8 +45,15 @@ function AdminEventList() {
     if (window.confirm('Are you sure you want to delete this event? This action cannot be undone.')) {
       try {
         await deleteEvent(id);
-        setEvents(events.filter((e) => e.id !== id));
-        setRefreshTrigger(prev => prev + 1);
+        
+        const updatedEvents = events.filter((e) => e.id !== id);
+        setEvents(updatedEvents);
+        
+        if (updatedEvents.length === 0 && page > 0) {
+          setPage(page - 1);
+        } else {
+          setRefreshTrigger(prev => prev + 1);
+        }
       } catch (err) {
         console.error('Error deleting event:', err);
         alert('Failed to delete event. Please try again.');

@@ -36,9 +36,6 @@ function Register() {
       const { confirmPassword, ...userData } = form;
       await register(userData);
       setMessage("Registration successful! Please login.");
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
     } catch (err) {
       setMessage("Registration failed. Please try again.");
     }
