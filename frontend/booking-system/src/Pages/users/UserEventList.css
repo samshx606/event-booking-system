@@ -1,147 +1,154 @@
-/* UserEventList.css */
-
-/* Container */
 .user-event-list-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: var(--container-max-width);
+  margin: var(--spacing-8) auto;
+  padding: var(--spacing-6);
+  font-family: var(--font-family-base);
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
-/* Heading */
 .user-event-list-container h1 {
   text-align: center;
-  margin-bottom: 1rem;
-  color: #333;
+  margin-bottom: var(--spacing-6);
+  color: var(--color-gray-900);
+  font-size: var(--font-size-3xl);
 }
-
-/* View Bookings button above table */
 .view-bookings-btn {
   display: inline-block;
-  margin: 0 auto 1.5rem;
-  padding: 8px 16px;
-  background-color: #ffc107;
-  color: #212529;
-  font-weight: 600;
-  border-radius: 5px;
+  margin: 0 auto var(--spacing-6);
+  padding: var(--spacing-3) var(--spacing-6);
+  background-color: var(--color-warning);
+  color: var(--color-gray-900);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--border-radius-md);
   text-decoration: none;
-  transition: background 0.3s;
+  transition: var(--transition-base);
 }
 
 .view-bookings-btn:hover {
-  background-color: #e0a800;
+  background-color: var(--color-warning-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
-
-/* Table */
 .user-event-table {
   width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-md);
 }
 
 .user-event-table th, 
 .user-event-table td {
-  padding: 12px 15px;
+  padding: var(--spacing-4) var(--spacing-5);
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-gray-200);
 }
 
 .user-event-table th {
-  background-color: #007bff;
-  color: white;
-  font-weight: 600;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.user-event-table tr:last-child td {
+  border-bottom: none;
 }
 
 .user-event-table tr:hover {
-  background-color: #f1f7ff;
+  background-color: var(--color-gray-100);
 }
 
-/* No events message */
 .no-events {
   text-align: center;
-  padding: 2rem;
-  font-size: 1.1rem;
-  color: #555;
+  padding: var(--spacing-8);
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-600);
 }
 
-/* Actions cell */
 .user-actions-cell {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--spacing-2);
   flex-wrap: wrap;
 }
 
-/* Buttons inside table */
 .user-actions-cell a {
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
   text-decoration: none;
-  color: white;
-  transition: background 0.3s;
+  color: var(--color-white);
+  transition: var(--transition-base);
+  font-weight: var(--font-weight-medium);
 }
 
-/* View Event button */
 .user-actions-cell .view-btn-user {
-  background-color: #17a2b8;
+  background-color: var(--color-info);
 }
 
 .user-actions-cell .view-btn-user:hover {
-  background-color: #138496;
+  background-color: var(--color-info-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Book Now button */
 .user-actions-cell .book-btn {
-  background-color: #28a745;
+  background-color: var(--color-success);
 }
 
 .user-actions-cell .book-btn:hover {
-  background-color: #218838;
+  background-color: var(--color-success-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Pagination */
 .user-pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1.5rem;
-  gap: 1rem;
+  margin-top: var(--spacing-8);
+  gap: var(--spacing-4);
 }
 
 .user-pagination .pagination-btn {
-  padding: 6px 14px;
+  padding: var(--spacing-2) var(--spacing-5);
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-primary);
+  color: var(--color-white);
   cursor: pointer;
-  transition: background 0.3s;
+  transition: var(--transition-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
 }
 
 .user-pagination .pagination-btn:disabled {
-  background-color: #6c757d;
+  background-color: var(--color-gray-500);
   cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .user-pagination .pagination-btn:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .user-pagination .page-info {
-  font-weight: 500;
-  color: #333;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  font-size: var(--font-size-sm);
 }
 
-/* Loading and error states */
 .user-loading, .user-error {
   text-align: center;
-  padding: 2rem;
-  font-size: 1.1rem;
-  color: #555;
+  padding: var(--spacing-8);
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-600);
 }

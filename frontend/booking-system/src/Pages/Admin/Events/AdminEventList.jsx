@@ -67,7 +67,7 @@ function AdminEventList() {
     <div className="admin-event-list-container">
       <div className="admin-event-header">
         <h1>Events Management</h1>
-        <Link to="/admins/events/create" className="create-event-btn">
+        <Link to="/admin/events/create" className="create-event-btn">
           <i className="fas fa-plus"></i> Create New Event
         </Link>
       </div>
@@ -103,7 +103,7 @@ function AdminEventList() {
                       </span>
                     </td>
                     <td className="actions-cell">
-                      <Link to={`/admins/events/edit/${event.id}`} className="edit-btn">
+                      <Link to={`/admin/events/edit/${event.id}`} className="edit-btn">
                         <i className="fas fa-edit"></i>
                       </Link>
                       <button 

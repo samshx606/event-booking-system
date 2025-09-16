@@ -21,9 +21,7 @@ function ViewBookings() {
     const fetchBookings = async () => {
       setLoading(true);
       try {
-        console.log("Fetching bookings for userId:", user.id, "page:", page);
         const data = await getBookingsByUserId(user.id, page);
-        console.log("Bookings response:", data);
 
         setBookings(data.content || []);
         setTotalPages(data.totalPages || 0);
@@ -66,7 +64,6 @@ function ViewBookings() {
                 <th>Location</th>
                 <th>Seats</th>
                 <th>Total Price</th>
-                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -76,8 +73,7 @@ function ViewBookings() {
                   <td>{new Date(booking.event?.date).toLocaleString()}</td>
                   <td>{booking.event?.location}</td>
                   <td>{booking.quantity}</td>
-                  <td>${booking.totalPrice?.toFixed(2) || 0}</td>
-                  <td>{booking.status || "N/A"}</td>
+                  <td>${booking.event.price?.toFixed(2) * booking.quantity || 0}</td>
                 </tr>
               ))}
             </tbody>

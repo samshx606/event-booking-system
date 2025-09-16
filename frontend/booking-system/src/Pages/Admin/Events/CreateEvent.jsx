@@ -27,7 +27,7 @@ function CreateEvent() {
       const formattedForm = { ...form, date: new Date(form.date).toISOString() };
       await createEvent(formattedForm);
       setMessage({ text: "Event created successfully!", type: "success" });
-      setTimeout(() => navigate("/admins/events"), 2000);
+      setTimeout(() => navigate("/admin/events"), 2000);
     } catch (err) {
       setMessage({ text: err.response?.data?.message || "Failed to create event.", type: "error" });
     } finally {
@@ -144,7 +144,7 @@ function CreateEvent() {
         </div>
         
         <div className="form-actions">
-          <button type="button" className="btn-secondary" onClick={() => navigate('/admins/dashboard')}>
+          <button type="button" className="btn-secondary" onClick={() => navigate('/admin/dashboard')}>
             Cancel
           </button>
           <button type="submit" className="btn-primary" disabled={loading}>

@@ -28,7 +28,6 @@ function Register() {
       return;
     }
     
-    // Additional validations
     if (form.password.length < 6) {
       setMessage("Password must be at least 6 characters long");
       return;
@@ -124,7 +123,7 @@ function Register() {
         
         <button type="submit">Register</button>
       </form>
-      <p>{message}</p>
+      <p className={message.includes("successful") ? "success-message" : "error-message"}>{message}</p>
       <span className="span">
         Already have an account? <Link to="/login">Login</Link>
       </span>

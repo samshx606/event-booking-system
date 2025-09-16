@@ -1,52 +1,73 @@
-.login-container body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  margin: 0;
-  padding: 0;
+.login-container {
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+  margin: var(--spacing-24) auto;
+  padding: var(--spacing-12);
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  overflow: hidden;
 }
 
-.login-container {
-  width: 350px;
-  margin: 100px auto;
-  padding: 30px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  text-align: center;
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--gradient-primary);
 }
 
 .login-container h2 {
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: var(--spacing-8);
+  color: var(--color-gray-900);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
 }
 
 .login-container input {
-  width: 90%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  width: 100%;
+  padding: var(--spacing-4);
+  margin: var(--spacing-3) 0;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-md);
   outline: none;
-  font-size: 14px;
-  transition: 0.3s;
+  font-size: var(--font-size-base);
+  transition: var(--transition-base);
+  background-color: var(--color-gray-100);
 }
 
 .login-container input:focus {
-  border-color: #2575fc;
-  box-shadow: 0 0 5px rgba(37,117,252,0.5);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  background-color: var(--color-white);
 }
 
 .login-container button {
-  width: 95%;
-  padding: 12px;
-  margin-top: 15px;
-  background: #2575fc;
-  color: white;
+  width: 100%;
+  padding: var(--spacing-4);
+  margin-top: var(--spacing-6);
+  background: var(--gradient-primary);
+  color: var(--color-white);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius-md);
   cursor: pointer;
-  font-size: 15px;
-  transition: 0.3s;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.login-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.login-container button:active {
+  transform: translateY(0);
 }
 
 .login-container button:hover {

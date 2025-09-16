@@ -1,33 +1,32 @@
 .card {
+  background: var(--color-white);
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-base);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 15px;
-  width: 320px;
   height: 100%;
-  cursor: pointer;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-xl);
 }
 
 .card-image {
-  position: relative;
-  height: 180px;
+  width: 100%;
+  height: 200px;
   overflow: hidden;
+  position: relative;
 }
 
 .card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform var(--transition-slow);
 }
 
 .card:hover .card-image img {
@@ -35,16 +34,18 @@
 }
 
 .card-content {
-  padding: 20px;
-  flex-grow: 1;
+  padding: var(--spacing-6);
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .card-title {
-  margin: 0 0 15px;
-  font-size: 1.4rem;
-  color: #333;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-4) 0;
+  color: var(--color-gray-800);
+  line-height: var(--line-height-tight);
 }
 
 .card-info {
@@ -52,98 +53,137 @@
 }
 
 .card-description {
-  margin-bottom: 15px;
-  color: #666;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  color: var(--color-gray-600);
+  line-height: var(--line-height-base);
+  margin-bottom: var(--spacing-5);
 }
 
 .card-details {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-5);
 }
 
 .card-details span {
   display: flex;
   align-items: center;
-  font-size: 0.85rem;
-  color: #555;
+  font-size: 0.95rem;
+  color: #5a6c7d;
 }
 
 .card-details i {
-  margin-right: 8px;
-  color: #2575fc;
+  margin-right: 0.6rem;
+  width: 16px;
+  color: #667eea;
 }
 
+/* Card footer */
 .card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f2f6;
 }
 
+.card-creator {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+/* Status styles */
 .card-status {
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 5px 10px;
-  border-radius: 15px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
-.card-status.active, .card-status.confirmed {
-  background-color: #e3f8e7;
-  color: #28a745;
+.card-status.confirmed {
+  background-color: #e7f6ef;
+  color: #0e9f6e;
 }
 
 .card-status.pending {
-  background-color: #fff8e1;
-  color: #ffa000;
+  background-color: #fef6e6;
+  color: #ff8a4c;
 }
 
-.card-status.cancelled, .card-status.expired {
-  background-color: #ffebee;
-  color: #f44336;
+.card-status.cancelled {
+  background-color: #fce8e8;
+  color: #e02424;
 }
 
-.card-status.completed {
-  background-color: #e8eaf6;
-  color: #3f51b5;
-}
-
+/* Button styles */
 .card-button {
-  background-color: #2575fc;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .card-button:hover {
-  background-color: #1a5dc7;
-}
-.event-card .card-capacity {
-  color: #2575fc;
-  font-weight: 500;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
 }
 
-.booking-card .card-booking-id {
-  font-weight: 500;
+/* Booking card specific styles */
+.booking-card .card-details {
+  gap: 0.5rem;
 }
 
-.booking-card .card-total-price {
-  color: #28a745;
-  font-weight: 600;
+.booking-card .card-footer {
+  padding-top: 1.2rem;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
-  .card {
+  .card-content {
+    padding: 1.2rem;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+  }
+  
+  .card-details {
+    gap: 0.5rem;
+  }
+  
+  .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .card-button {
     width: 100%;
-    max-width: 400px;
-    margin: 15px auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-image {
+    height: 180px;
+  }
+  
+  .card-content {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .card-details span {
+    font-size: 0.9rem;
   }
 }

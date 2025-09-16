@@ -45,15 +45,15 @@ function App() {
           <EventList />
         } />
 
-        <Route path="/admins/dashboard" element={<AdminDashboard />} />
-        <Route path="/admins/events" element={<AdminEventList/>} />
-        <Route path="/admins/events/create" element={<CreateEvent/>} />
-        <Route path="admins/events/edit/:id" element={<EditEvent/>} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/events" element={<AdminEventList/>} />
+        <Route path="/admin/events/create" element={<CreateEvent/>} />
+        <Route path="admin/events/edit/:id" element={<EditEvent/>} />
         <Route path="/events/:id" element={<ViewEvent/>} />
         <Route path="/users/events" element={<UserEventList/>} />
         <Route path="booking-success" element={<BookingSuccess/>} />
         <Route path="/users/bookings" element={<ViewBookings/>} />
-
+        
       </Routes>
       
       <Footer/>

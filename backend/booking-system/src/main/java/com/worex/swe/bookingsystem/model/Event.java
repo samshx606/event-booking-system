@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
@@ -55,4 +56,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "creator_id", nullable = false)
     private User creator;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 }

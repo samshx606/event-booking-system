@@ -18,7 +18,7 @@ function Login() {
     try {
       const data = await login(form);
       if (data.role === "USER") navigate("/users/events");
-      if (data.role === "ADMIN") navigate("/admins/dashboard");
+      if (data.role === "ADMIN") navigate("/admin/dashboard");
     } catch {
       setMessage("Invalid credentials");
     }
