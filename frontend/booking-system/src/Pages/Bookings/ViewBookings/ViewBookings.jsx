@@ -1,7 +1,6 @@
-// src/Pages/Bookings/ViewBookings.jsx
 import React, { useState, useEffect } from "react";
-import { getBookingsByUserId } from "../../../APIs/BookingAPI.jsx";
-import { useAuth } from "../../../Context/AuthContext.jsx";
+import { getBookingsByUserId } from "../../../APIs/BookingAPI";
+import { useAuth } from "../../../Context/AuthContext";
 import "./ViewBookings.css";
 
 function ViewBookings() {
@@ -14,14 +13,13 @@ function ViewBookings() {
 
   useEffect(() => {
     if (!user?.id) {
-      // User not loaded yet
       return;
     }
 
     const fetchBookings = async () => {
       setLoading(true);
       try {
-        const data = await getBookingsByUserId(user.id, page);
+        const data = await getBookingsByUserId(user.id, page, 8);
 
         setBookings(data.content || []);
         setTotalPages(data.totalPages || 0);
@@ -79,27 +77,25 @@ function ViewBookings() {
             </tbody>
           </table>
 
-          {totalPages > 1 && (
-            <div className="pagination">
-              <button
-                onClick={handlePrevPage}
-                disabled={page === 0}
-                className="pagination-btn"
-              >
-                Previous
-              </button>
-              <span className="page-info">
-                Page {page + 1} of {totalPages}
-              </span>
-              <button
-                onClick={handleNextPage}
-                disabled={page === totalPages - 1}
-                className="pagination-btn"
-              >
-                Next
-              </button>
-            </div>
-          )}
+          <div className="pagination">
+            <button
+              onClick={handlePrevPage}
+              disabled={page === 0}
+              className="pagination-btn"
+            >
+              <i className="fas fa-chevron-left"></i> Previous
+            </button>
+            <span className="page-info">
+              Page {page + 1} of {totalPages || 1}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={page === totalPages - 1 || totalPages === 0}
+              className="pagination-btn"
+            >
+              Next <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </>
       )}
     </div>

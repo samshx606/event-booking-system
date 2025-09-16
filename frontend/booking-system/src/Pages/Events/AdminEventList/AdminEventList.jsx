@@ -15,7 +15,7 @@ function AdminEventList() {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const response = await getAllEvents(page);
+        const response = await getAllEvents(page, 10);
         setEvents(response.content || []);
         setTotalPages(response.totalPages || 0);
       } catch (err) {
@@ -46,7 +46,6 @@ function AdminEventList() {
       try {
         await deleteEvent(id);
         setEvents(events.filter((e) => e.id !== id));
-        // Refresh the list after deletion
         setRefreshTrigger(prev => prev + 1);
       } catch (err) {
         console.error('Error deleting event:', err);
@@ -104,16 +103,16 @@ function AdminEventList() {
                     </td>
                     <td className="actions-cell">
                       <Link to={`/admin/events/edit/${event.id}`} className="edit-btn">
-                        <i className="fas fa-edit"></i>
+                        Edit
                       </Link>
                       <button 
                         className="delete-btn" 
                         onClick={() => handleDeleteEvent(event.id)}
                       >
-                        <i className="fas fa-trash-alt"></i>
+                        Delete
                       </button>
                       <Link to={`/events/${event.id}`} className="view-btn">
-                        <i className="fas fa-eye"></i>
+                        View
                       </Link>
                     </td>
                   </tr>
@@ -122,27 +121,25 @@ function AdminEventList() {
             </table>
           </div>
 
-          {totalPages > 1 && (
-            <div className="admin-pagination">
-              <button 
-                onClick={handlePrevPage} 
-                disabled={page === 0}
-                className="pagination-btn"
-              >
-                <i className="fas fa-chevron-left"></i> Previous
-              </button>
-              <span className="page-info">
-                Page {page + 1} of {totalPages}
-              </span>
-              <button 
-                onClick={handleNextPage} 
-                disabled={page === totalPages - 1}
-                className="pagination-btn"
-              >
-                Next <i className="fas fa-chevron-right"></i>
-              </button>
-            </div>
-          )}
+          <div className="admin-pagination">
+            <button 
+              onClick={handlePrevPage} 
+              disabled={page === 0}
+              className="pagination-btn"
+            >
+              <i className="fas fa-chevron-left"></i> Previous
+            </button>
+            <span className="page-info">
+              Page {page + 1} of {totalPages || 1}
+            </span>
+            <button 
+              onClick={handleNextPage} 
+              disabled={page === totalPages - 1 || totalPages === 0}
+              className="pagination-btn"
+            >
+              Next <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </>
       )}
     </div>

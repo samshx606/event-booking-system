@@ -1,43 +1,142 @@
 .about {
-  padding: 30px;
+  padding: 0;
   text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
 .about-hero {
-  background: #2c3e50;
+  background: linear-gradient(135deg, #3498db, #2c3e50);
   color: white;
-  padding: 60px 20px;
-  border-radius: 10px;
+  padding: 120px 20px 100px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/aboutUs.avif') center/cover;
+  opacity: 0.2;
+  z-index: 0;
 }
 
 .about-hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .about-hero p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  font-weight: 300;
+  line-height: 1.6;
+  animation: fadeInUp 1s ease-out;
 }
 
 .about-content {
-  margin-top: 40px;
+  margin: 60px auto 80px;
   text-align: left;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
+  padding: 0 30px;
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
 
 .about-content h2 {
-  margin-top: 30px;
+  margin: 50px 0 20px;
   color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.about-content h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 3px;
+  background: #3498db;
+}
+
+.about-content p {
+  margin-bottom: 24px;
+  color: #555;
 }
 
 .about-content ul {
-  margin-top: 15px;
-  padding-left: 20px;
+  margin: 25px 0;
+  padding-left: 0;
+  list-style: none;
 }
 
 .about-content li {
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+  padding-left: 30px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.about-content li:hover {
+  transform: translateX(5px);
+}
+
+.about-content li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 18px;
+  height: 18px;
+  background-color: #3498db;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 80px 20px 60px;
+  }
+  
+  .about-hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .about-hero p {
+    font-size: 1.1rem;
+  }
+  
+  .about-content {
+    padding: 0 20px;
+    margin: 40px auto 60px;
+  }
 }

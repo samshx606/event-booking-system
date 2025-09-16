@@ -7,13 +7,11 @@ function Card({ type, data  }) {
   const navigate = useNavigate();
   const { user, isLoggedIn } = useAuth();
 
-  // Function to format date
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
   
-  // Function to handle booking creation
   const handleBookNow = async (eventId) => {
     if (!isLoggedIn) {
       alert("Please login to book an event");
@@ -35,16 +33,6 @@ function Card({ type, data  }) {
       alert("Failed to create booking. Please try again.");
     }
   };
-
-  // // Function to handle event card click
-  // const handleEventClick = () => {
-  //   navigate(`/events/${data.id}`);
-  // };
-
-  // // Function to handle booking card click
-  // const handleBookingClick = () => {
-  //   navigate(`/bookings/${data.id}`);
-  // };
 
   // Render Event Card
   if (type === 'event') {

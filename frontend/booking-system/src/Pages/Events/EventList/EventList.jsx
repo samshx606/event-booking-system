@@ -14,7 +14,7 @@ function EventList() {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const response = await getAllEvents(page);
+        const response = await getAllEvents(page, 9);
         setEvents(response.content || []);
         setTotalPages(response.totalPages || 0);
       } catch (err) {
@@ -62,27 +62,25 @@ function EventList() {
         )}
       </div>
       
-      {totalPages > 1 && (
-        <div className="pagination">
-          <button 
-            onClick={handlePrevPage} 
-            disabled={page === 0}
-            className="pagination-button"
-          >
-            Previous
-          </button>
-          <span className="page-info">
-            Page {page + 1} of {totalPages}
-          </span>
-          <button 
-            onClick={handleNextPage} 
-            disabled={page === totalPages - 1}
-            className="pagination-button"
-          >
-            Next
-          </button>
-        </div>
-      )}
+      <div className="pagination">
+        <button 
+          onClick={handlePrevPage} 
+          disabled={page === 0}
+          className="pagination-button"
+        >
+          Previous
+        </button>
+        <span className="page-info">
+          Page {page + 1} of {totalPages || 1}
+        </span>
+        <button 
+          onClick={handleNextPage} 
+          disabled={page === totalPages - 1 || totalPages === 0}
+          className="pagination-button"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

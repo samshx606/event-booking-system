@@ -18,26 +18,26 @@ import AdminUserList from './Pages/users/AdminUserList/AdminUserList';
 function App() {
   return (
     <>
-    <Navbar/>
-
-    <Routes>
-        <Route path="/" element= {<Home/>} />
-        <Route path="/about" element= {<About/>} />
-        <Route path="/login" element= {<Login/>} />
-        <Route path="/register" element= {<Register />}/>
-        <Route path="/events" element= {<EventList />}/>
+      <Navbar />
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/events" element={<EventList />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/events" element={<AdminEventList/>} />
-        <Route path="/admin/events/create" element={<CreateEvent/>} />
-        <Route path="admin/events/edit/:id" element={<EditEvent/>} />
-        <Route path="/events/:id" element={<ViewEvent/>} />
-        <Route path="booking-success" element={<BookingSuccess/>} />
-        <Route path="/users/bookings" element={<ViewBookings/>} />
-        <Route path="/profile" element={<ViewProfile/>} />
-        <Route path="/admin/users" element={<AdminUserList/>} />
+        <Route path="/admin/events" element={<AdminEventList />} />
+        <Route path="/admin/events/create" element={<CreateEvent />} />
+        <Route path="/admin/events/edit/:id" element={<EditEvent />} />
+        <Route path="/events/:id" element={<ViewEvent />} />
+        <Route path="/booking-success" element={<BookingSuccess />} />
+        <Route path="/users/bookings" element={<ViewBookings />} />
+        <Route path="/profile" element={<ViewProfile />} />
+        <Route path="/admin/users" element={<AdminUserList />} />
       </Routes>
       
-      <Footer/>
+      <Footer />
     </>
   )
 }

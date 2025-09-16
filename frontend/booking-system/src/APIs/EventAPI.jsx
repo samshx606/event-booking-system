@@ -5,9 +5,9 @@ export const getEventById = async (id) => {
   return response.data;
 };
 
-export const getAllEvents = async (page = 0, size = 10, sort = "title") => {
+export const getAllEvents = async (page = 0, size = 10, sort = "date", sortDir = "desc") => {
   const response = await axiosInstance.get(`/api/events`, {
-    params: { page, size, sort },
+    params: { page, size, sort, sortDir },
   });
   return response.data;
 };

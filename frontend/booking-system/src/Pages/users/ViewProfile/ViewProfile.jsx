@@ -69,9 +69,7 @@ const ViewProfile = () => {
     try {
       setDeleteLoading(true);
       await deleteMyProfile();
-      // Don't call the logout API since the user is already deleted
-      // Just directly clear the frontend state
-      logout(true); // Pass true to indicate this is after account deletion
+      logout(true);
       navigate('/');
     } catch (err) {
       console.error('Error deleting profile:', err);

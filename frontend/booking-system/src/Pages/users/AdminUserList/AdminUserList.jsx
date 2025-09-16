@@ -17,7 +17,7 @@ function AdminUserList() {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const response = await getAllUsers(page);
+        const response = await getAllUsers(page, 10);
         setUsers(response.content || []);
         setTotalPages(response.totalPages || 0);
       } catch (err) {
@@ -48,7 +48,6 @@ function AdminUserList() {
       try {
         await deleteUser(id);
         setUsers(users.filter((user) => user.id !== id));
-        // Refresh the list after deletion
         setRefreshTrigger(prev => prev + 1);
       } catch (err) {
         console.error('Error deleting user:', err);
@@ -62,7 +61,6 @@ function AdminUserList() {
       try {
         await makeAdmin(id);
         alert('User successfully promoted to admin!');
-        // Refresh the list after promotion
         setRefreshTrigger(prev => prev + 1);
       } catch (err) {
         console.error('Error promoting user:', err);
@@ -124,7 +122,7 @@ function AdminUserList() {
                           disabled={currentUser?.id === user.id}
                           style={currentUser?.id === user.id ? { cursor: 'not-allowed', opacity: 0.5 } : {}}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          Delete
                         </button>
                         
                         <button 
@@ -134,7 +132,7 @@ function AdminUserList() {
                           title={user.role === "ADMIN" ? "User is already an admin" : "Promote to Admin"}
                           style={user.role === "ADMIN" ? { cursor: 'not-allowed', opacity: 0.5 } : {}}
                         >
-                          <i className="fas fa-user-shield"></i>
+                          Make Admin
                         </button>
                       </div>
                     </td>
@@ -144,27 +142,25 @@ function AdminUserList() {
             </table>
           </div>
 
-          {totalPages > 1 && (
-            <div className="admin-pagination">
-              <button 
-                onClick={handlePrevPage} 
-                disabled={page === 0}
-                className="pagination-btn"
-              >
-                <i className="fas fa-chevron-left"></i> Previous
-              </button>
-              <span className="page-info">
-                Page {page + 1} of {totalPages}
-              </span>
-              <button 
-                onClick={handleNextPage} 
-                disabled={page === totalPages - 1}
-                className="pagination-btn"
-              >
-                Next <i className="fas fa-chevron-right"></i>
-              </button>
-            </div>
-          )}
+          <div className="admin-pagination">
+            <button 
+              onClick={handlePrevPage} 
+              disabled={page === 0}
+              className="pagination-btn"
+            >
+              <i className="fas fa-chevron-left"></i> Previous
+            </button>
+            <span className="page-info">
+              Page {page + 1} of {totalPages || 1}
+            </span>
+            <button 
+              onClick={handleNextPage} 
+              disabled={page === totalPages - 1 || totalPages === 0}
+              className="pagination-btn"
+            >
+              Next <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </>
       )}
     </div>
