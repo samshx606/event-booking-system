@@ -19,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
@@ -30,27 +29,9 @@ public class UserServiceImpl implements UserService{
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public UserResponseDTO getUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("User not found with id: " + id));
-        return userMapper.toResponseDTO(user);
-    }
-
-    @Override
     public Page<UserResponseDTO> getAllUsers(Pageable pageable) {
         Page<User> users = userRepository.findAll(pageable);
         return users.map(userMapper::toResponseDTO);
-    }
-
-    @Override
-    @Transactional
-    public UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO) {
-        User existingUser = userRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("User not found with id: " + id));
-        User updatedUser = userMapper.toUser(userRequestDTO);
-        updatedUser.setId(existingUser.getId());
-        User savedUser = userRepository.save(updatedUser);
-        return userMapper.toResponseDTO(savedUser);
     }
 
     @Override
@@ -88,6 +69,7 @@ public class UserServiceImpl implements UserService{
         }
         String token = jwtTokenProvider.generateToken(user);
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+        loginResponseDTO.setId(user.getId());
         loginResponseDTO.setUsername(user.getUsername());
         loginResponseDTO.setEmail(user.getEmail());
         loginResponseDTO.setFirstName(user.getFirstName());

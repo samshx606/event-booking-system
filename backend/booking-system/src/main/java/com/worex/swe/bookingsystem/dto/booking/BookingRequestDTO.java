@@ -17,6 +17,5 @@ public class BookingRequestDTO {
     private Long eventId;
 
     @NotNull
-    @Min(1)
     private Integer quantity;
 }

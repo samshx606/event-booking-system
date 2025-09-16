@@ -7,10 +7,9 @@ import com.worex.swe.bookingsystem.dto.user.UserResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
+
 public interface UserService {
-    UserResponseDTO getUserById(Long id);
     Page<UserResponseDTO> getAllUsers(Pageable pageable);
-    UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO);
     void deleteUser(Long id);
     void deleteProfile(String username);
     UserResponseDTO register(UserRequestDTO userRequestDTO);

@@ -1,6 +1,7 @@
 package com.worex.swe.bookingsystem.service.event_service;
 
-import com.worex.swe.bookingsystem.dto.event.EventDTO;
+import com.worex.swe.bookingsystem.dto.event.EventRequestDto;
+import com.worex.swe.bookingsystem.dto.event.EventResponseDto;
 import com.worex.swe.bookingsystem.exception.ResourceNotFoundException;
 import com.worex.swe.bookingsystem.mapper.EventMapper;
 import com.worex.swe.bookingsystem.model.Event;
@@ -13,8 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,21 +22,21 @@ public class EventServiceImpl implements EventService {
     private final EventMapper eventMapper;
     private final UserRepository userRepository;
     @Override
-    public EventDTO getEventById(Long id) {
+    public EventResponseDto getEventById(Long id) {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with id: " + id));
         return eventMapper.toEventDTO(event);
     }
 
     @Override
-    public Page<EventDTO> getAllEvents(Pageable pageable) {
+    public Page<EventResponseDto> getAllEvents(Pageable pageable) {
         Page<Event> events = eventRepository.findAll(pageable);
         return events.map(eventMapper::toEventDTO);
     }
 
     @Override
     @Transactional
-    public EventDTO createEvent(EventDTO eventDTO, String creatorUsername) {
+    public EventResponseDto createEvent(EventRequestDto eventDTO, String creatorUsername) {
         User creator = userRepository.findByUsername(creatorUsername)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + creatorUsername));
         Event event = eventMapper.toEvent(eventDTO);
@@ -48,7 +47,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     @Transactional
-    public EventDTO updateEvent(Long id, EventDTO eventDTO) {
+    public EventResponseDto updateEvent(Long id, EventRequestDto eventDTO) {
         Event existingEvent = eventRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Event not found with id: " + id));
 

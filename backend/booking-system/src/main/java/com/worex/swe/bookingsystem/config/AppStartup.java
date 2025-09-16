@@ -23,7 +23,7 @@ public class AppStartup implements CommandLineRunner {
             admin.setLastName("Elwan");
             admin.setUsername(username);
             admin.setEmail("saaameh.0.1@gmail.com");
-            admin.setPasswordHash(passwordEncoder.encode("sameh_123@#$"));
+            admin.setPasswordHash(passwordEncoder.encode("admin123"));
             admin.setRole(Role.ADMIN);
             userRepository.save(admin);
         }

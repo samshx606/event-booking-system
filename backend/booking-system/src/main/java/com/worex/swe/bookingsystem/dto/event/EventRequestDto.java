@@ -1,22 +1,15 @@
 package com.worex.swe.bookingsystem.dto.event;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.DecimalMin;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class EventDTO {
+@Getter @Setter
+public class EventRequestDto {
 
     @NotBlank
     @Size(max = 50)
@@ -37,9 +30,10 @@ public class EventDTO {
     private String location;
 
     @NotNull
-    @DecimalMin("0.0")
     private BigDecimal price;
 
     @Size(max = 255)
     private String imageUrl;
+
 }
+

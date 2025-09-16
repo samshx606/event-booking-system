@@ -1,16 +1,14 @@
 package com.worex.swe.bookingsystem.service.event_service;
 
-import com.worex.swe.bookingsystem.dto.event.EventDTO;
-import com.worex.swe.bookingsystem.model.User;
+import com.worex.swe.bookingsystem.dto.event.EventRequestDto;
+import com.worex.swe.bookingsystem.dto.event.EventResponseDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface EventService {
-    public EventDTO getEventById(Long id);
-    public Page<EventDTO> getAllEvents(Pageable pageable);
-    public EventDTO createEvent(EventDTO eventRequestDTO, String creatorUsername);
-    public EventDTO updateEvent(Long id, EventDTO eventRequestDTO);
-    public void deleteEvent(Long id);
+    EventResponseDto getEventById(Long id);
+    Page<EventResponseDto> getAllEvents(Pageable pageable);
+    EventResponseDto createEvent(EventRequestDto eventRequestDTO, String creatorUsername);
+    EventResponseDto updateEvent(Long id, EventRequestDto eventRequestDTO);
+    void deleteEvent(Long id);
 }

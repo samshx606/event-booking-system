@@ -1,6 +1,6 @@
 package com.worex.swe.bookingsystem.dto.booking;
 
-import com.worex.swe.bookingsystem.dto.event.EventDTO;
+import com.worex.swe.bookingsystem.dto.event.EventResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +13,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingResponseDTO {
+    private Long id;
     private UserResponseDTO user;
-    private EventDTO event;
+    private EventResponseDto event;
     private Integer quantity;
     private LocalDateTime bookingDate;
 }
