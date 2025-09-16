@@ -84,9 +84,9 @@ public class UserServiceImpl implements UserService{
                 ()-> new ResourceNotFoundException("User not found with username: " + userDetails.getUsername()));
         return userMapper.toResponseDTO(user);
     }
-    public UserResponseDTO makeAdmin(String username){
-        User user = userRepository.findByUsername(username).orElseThrow(
-                ()-> new ResourceNotFoundException("User not found with username: " + username));
+    public UserResponseDTO makeAdmin(Long id){
+        User user = userRepository.findById(id).orElseThrow(
+                ()-> new ResourceNotFoundException("User not found with username: " + id));
         user.setRole(Role.ADMIN);
         User updatedUser = userRepository.save(user);
         return userMapper.toResponseDTO(updatedUser);

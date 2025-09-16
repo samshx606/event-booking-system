@@ -15,5 +15,5 @@ public interface UserService {
     UserResponseDTO register(UserRequestDTO userRequestDTO);
     LoginResponseDTO login(LoginRequestDTO loginRequestDTO);
     UserResponseDTO viewProfile(UserDetails userDetails);
-    UserResponseDTO makeAdmin(String username);
+    UserResponseDTO makeAdmin(Long id);
 }

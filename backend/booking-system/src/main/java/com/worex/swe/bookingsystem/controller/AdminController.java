@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private final UserService userService;
 
-    @PutMapping("/users/{username}/promote")
-    public UserResponseDTO makeAdmin(@PathVariable String username) {
-        return userService.makeAdmin(username);
+    @PutMapping("/users/{id}/promote")
+    public UserResponseDTO makeAdmin(@PathVariable Long id) {
+        return userService.makeAdmin(id);
     }
 }

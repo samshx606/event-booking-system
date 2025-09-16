@@ -1,15 +1,46 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { createEvent } from "../../../APIs/EventAPI";
-import { useAuth } from "../../../context/AuthContext";
-import "./CreateEvent.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getEventById, updateEvent } from "../../../APIs/EventAPI";
+import { useAuth } from "../../../Context/AuthContext";
+import "../CreateEvent/CreateEvent.css";
 
-function CreateEvent() {
+function EditEvent() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const { user } = useAuth();
-  const [form, setForm] = useState({ title: "", description: "", location: "", date: "", price: "", imageUrl: "", category: "" });
+
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    location: "",
+    date: "",
+    price: "",
+    imageUrl: "",
+    category: "",
+  });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const eventData = await getEventById(id);
+        setForm({
+          title: eventData.title || "",
+          description: eventData.description || "",
+          location: eventData.location || "",
+          date: eventData.date ? new Date(eventData.date).toISOString().slice(0,16) : "",
+          price: eventData.price || 0,
+          imageUrl: eventData.imageUrl || "",
+          category: eventData.category || "",
+        });
+      } catch (err) {
+        console.error("Failed to load event:", err);
+        setMessage({ text: "Failed to load event data.", type: "error" });
+      }
+    };
+    fetchEvent();
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,17 +50,17 @@ function CreateEvent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (user?.role !== "ADMIN") {
-      setMessage({ text: "Only admins can create events", type: "error" });
+      setMessage({ text: "Only admins can update events", type: "error" });
       return;
     }
     setLoading(true);
     try {
       const formattedForm = { ...form, date: new Date(form.date).toISOString() };
-      await createEvent(formattedForm);
-      setMessage({ text: "Event created successfully!", type: "success" });
-      setTimeout(() => navigate("/admin/events"), 2000);
+      await updateEvent(id, formattedForm);
+      setMessage({ text: "Event updated successfully!", type: "success" });
+      setTimeout(() => navigate("/admins/events"), 2000);
     } catch (err) {
-      setMessage({ text: err.response?.data?.message || "Failed to create event.", type: "error" });
+      setMessage({ text: err.response?.data?.message || "Failed to update event.", type: "error" });
     } finally {
       setLoading(false);
     }
@@ -37,9 +68,10 @@ function CreateEvent() {
 
   return (
     <div className="create-event-container">
-      <h1>Create New Event</h1>
+      <h1>Edit Event</h1>
       {message.text && <div className={`message ${message.type}`}>{message.text}</div>}
       <form onSubmit={handleSubmit} className="event-form">
+       
         <div className="form-group">
           <label htmlFor="title">Event Title*</label>
           <input
@@ -52,7 +84,6 @@ function CreateEvent() {
             required
           />
         </div>
-        
         <div className="form-group">
           <label htmlFor="description">Description*</label>
           <textarea
@@ -65,7 +96,6 @@ function CreateEvent() {
             required
           />
         </div>
-        
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="location">Location*</label>
@@ -79,7 +109,6 @@ function CreateEvent() {
               required
             />
           </div>
-          
           <div className="form-group">
             <label htmlFor="date">Date & Time*</label>
             <input
@@ -92,7 +121,6 @@ function CreateEvent() {
             />
           </div>
         </div>
-        
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="price">Ticket Price ($)*</label>
@@ -108,7 +136,6 @@ function CreateEvent() {
               required
             />
           </div>
-          
           <div className="form-group">
             <label htmlFor="category">Category*</label>
             <select
@@ -130,7 +157,6 @@ function CreateEvent() {
             </select>
           </div>
         </div>
-        
         <div className="form-group">
           <label htmlFor="imageUrl">Image URL</label>
           <input
@@ -142,13 +168,12 @@ function CreateEvent() {
             placeholder="http://example.com/image.jpg"
           />
         </div>
-        
         <div className="form-actions">
-          <button type="button" className="btn-secondary" onClick={() => navigate('/admin/dashboard')}>
+          <button type="button" className="btn-secondary" onClick={() => navigate('/admins/events')}>
             Cancel
           </button>
           <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? 'Creating...' : 'Create Event'}
+            {loading ? 'Updating...' : 'Update Event'}
           </button>
         </div>
       </form>
@@ -156,4 +181,4 @@ function CreateEvent() {
   );
 }
 
-export default CreateEvent;
+export default EditEvent;

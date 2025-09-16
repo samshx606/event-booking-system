@@ -1,29 +1,55 @@
 import { useNavigate } from 'react-router-dom';
 import './Card.css';
+import { createBooking } from '../../APIs/BookingAPI';
+import { useAuth } from '../../Context/AuthContext';
 
 function Card({ type, data  }) {
   const navigate = useNavigate();
+  const { user, isLoggedIn } = useAuth();
 
   // Function to format date
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
-
-  // Function to handle event card click
-  const handleEventClick = () => {
-    navigate(`/events/${data.id}`);
+  
+  // Function to handle booking creation
+  const handleBookNow = async (eventId) => {
+    if (!isLoggedIn) {
+      alert("Please login to book an event");
+      navigate("/login");
+      return;
+    }
+    
+    try {
+      const bookingData = {
+        eventId: eventId,
+        quantity: 1,
+      };
+      await createBooking(bookingData);
+      navigate(`/booking-success`, { 
+        state: { message: "Booking created successfully!" } 
+      });
+    } catch (err) {
+      console.error("Booking error:", err);
+      alert("Failed to create booking. Please try again.");
+    }
   };
 
-  // Function to handle booking card click
-  const handleBookingClick = () => {
-    navigate(`/bookings/${data.id}`);
-  };
+  // // Function to handle event card click
+  // const handleEventClick = () => {
+  //   navigate(`/events/${data.id}`);
+  // };
+
+  // // Function to handle booking card click
+  // const handleBookingClick = () => {
+  //   navigate(`/bookings/${data.id}`);
+  // };
 
   // Render Event Card
   if (type === 'event') {
     return (
-      <div className="card event-card" onClick={handleEventClick}>
+      <div className="card event-card" >
         {data.imageUrl && (
           <div className="card-image">
             <img src={data.imageUrl} alt={data.title} />
@@ -54,16 +80,38 @@ function Card({ type, data  }) {
             <span className="card-creator">
               By: {data.creator?.username || "Admin"}
             </span>
+            <div className="card-actions">
+              {isLoggedIn && user?.role === "USER" && (
+                <>
+                  <button 
+                    className="card-button book-now" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleBookNow(data.id);
+                    }}
+                  >
+                    Book Now
+                  </button>
+                  <button 
+                    className="card-button view-event" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/events/${data.id}`);
+                    }}
+                  >
+                    View Event
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>
     );
   }
-
-  // Render Booking Card
   if (type === 'booking') {
     return (
-      <div className="card booking-card" onClick={handleBookingClick}>
+      <div className="card booking-card">
         {data.event?.imageUrl && (
           <div className="card-image">
             <img src={data.event.imageUrl} alt={data.event.title} />

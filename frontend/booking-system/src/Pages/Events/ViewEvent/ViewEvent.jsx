@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getEventById } from "../../../APIs/EventAPI";
-import Card from "../../../components/Card/Card";
+import Card from "../../../Components/Card/Card";
 
 function ViewEvent() {
   const { id } = useParams();

@@ -1,6 +1,9 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../Context/AuthContext";
+
 function Home() {
+  const { isLoggedIn, user } = useAuth();
   const features = [
     {
       icon: "🎤",
@@ -25,7 +28,9 @@ function Home() {
         <h1>Welcome to EventBooking</h1>
         <p>Book your favorite events hassle-free</p>
         <h2 className="hero-subtitle">Discover events near you and enjoy unforgettable experiences!</h2>
-        <button className="hero-btn"><Link to="/events">Explore Events</Link></button>
+        {(!isLoggedIn || user?.role !== "ADMIN") && (
+          <button className="hero-btn"><Link to="/events">Explore Events</Link></button>
+        )}
       </header>
 
       <section className="features">

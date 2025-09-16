@@ -13,7 +13,7 @@ function BookingSuccess() {
       <div className="booking-success-card">
         <h1>Success!</h1>
         <p>{message}</p>
-        <button className="btn-primary" onClick={() => navigate("/users/events")}>
+        <button className="btn-primary" onClick={() => navigate("/events")}>
           Back to Events
         </button>
         <button className="btn-secondary" onClick={() => navigate("/users/bookings")}>

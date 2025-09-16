@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getAllEvents } from '../../APIs/EventAPI';
-import Card from '../../Components/Card/Card';
+import { getAllEvents } from '../../../APIs/EventAPI';
+import Card from '../../../Components/Card/Card';
 import './EventList.css';
 
 function EventList() {

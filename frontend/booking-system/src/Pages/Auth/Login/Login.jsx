@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../Context/AuthContext";
 import "./Login.css";
 
 function Login() {
@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     try {
       const data = await login(form);
-      if (data.role === "USER") navigate("/users/events");
+      if (data.role === "USER") navigate("/");
       if (data.role === "ADMIN") navigate("/admin/dashboard");
     } catch {
       setMessage("Invalid credentials");

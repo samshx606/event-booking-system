@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getAllEvents } from "../../APIs/EventAPI";
-import { createBooking } from "../../APIs/BookingAPI";
-import { useAuth } from "../../Context/AuthContext";
+import { getAllEvents } from "../../../APIs/EventAPI";
+import { createBooking } from "../../../APIs/BookingAPI";
+import { useAuth } from "../../../Context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import "./UserEventList.css";
 

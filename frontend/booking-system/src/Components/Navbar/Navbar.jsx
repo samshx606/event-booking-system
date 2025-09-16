@@ -1,10 +1,10 @@
 import "./Navbar.css";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../Context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn, logout, user } = useAuth();
 
   const handleLogout = async () => {
     await logout();
@@ -16,9 +16,21 @@ const Navbar = () => {
       <div className="nav-logo"><Link to="/">EventBooking</Link></div>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/events">Events</Link></li>
+        {(!isLoggedIn || user?.role !== "ADMIN") && (
+          <li><Link to="/events">Events</Link></li>
+        )}
+        
+        {isLoggedIn && user?.role === "ADMIN" && (
+          <li><Link to="/admin/dashboard">Dashboard</Link></li>
+        )}
+        
+        {isLoggedIn && user?.role !== "ADMIN" && (
+          <>
+            <li><Link to="/profile">View Profile</Link></li>
+            <li><Link to="/users/bookings">My Bookings</Link></li>
+          </>
+        )}
         <li><Link to="/about">About</Link></li>
-        <li><Link to="/contact">Contact</Link></li>
       </ul>
       <div className="nav-btns">
         {isLoggedIn ? (

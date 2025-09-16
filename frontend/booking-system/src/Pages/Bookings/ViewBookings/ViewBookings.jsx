@@ -1,7 +1,7 @@
 // src/Pages/Bookings/ViewBookings.jsx
 import React, { useState, useEffect } from "react";
-import { getBookingsByUserId } from "../../APIs/BookingAPI.jsx";
-import { useAuth } from "../../Context/AuthContext";
+import { getBookingsByUserId } from "../../../APIs/BookingAPI.jsx";
+import { useAuth } from "../../../Context/AuthContext.jsx";
 import "./ViewBookings.css";
 
 function ViewBookings() {

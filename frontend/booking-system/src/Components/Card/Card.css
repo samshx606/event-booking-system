@@ -86,11 +86,44 @@
   margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid #f1f2f6;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .card-creator {
   font-size: 0.9rem;
   color: #7f8c8d;
+}
+
+/* Card actions and buttons */
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.card-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.card-button.book-now {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.card-button.view-event {
+  background-color: #2196F3;
+  color: white;
+}
+
+.card-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 /* Status styles */
