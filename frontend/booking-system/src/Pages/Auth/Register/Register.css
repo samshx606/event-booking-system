@@ -1,0 +1,91 @@
+.register-container body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  margin: 0;
+  padding: 0;
+}
+
+.register-container {
+  width: 350px;
+  margin: 100px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.register-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.register-container .input-group {
+  position: relative;
+  margin: 15px 0;
+  text-align: left;
+}
+
+.register-container input {
+  width: 90%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.register-container input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 5px rgba(37,117,252,0.5);
+}
+
+.register-container .field-description {
+  display: block;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #666;
+  text-align: left;
+}
+
+.register-container button {
+  width: 95%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.register-container button:hover {
+  background: #1a5dc7;
+}
+
+.register-container p {
+  margin-top: 15px;
+  color: #e74c3c;
+  font-size: 14px;
+}
+
+.register-container .span {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.register-container a {
+  color: #2575fc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-container a:hover {
+  text-decoration: underline;
+}

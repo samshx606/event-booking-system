@@ -1,0 +1,43 @@
+.about {
+  padding: 30px;
+  text-align: center;
+}
+
+.about-hero {
+  background: #2c3e50;
+  color: white;
+  padding: 60px 20px;
+  border-radius: 10px;
+}
+
+.about-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+}
+
+.about-content {
+  margin-top: 40px;
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.about-content h2 {
+  margin-top: 30px;
+  color: #2c3e50;
+}
+
+.about-content ul {
+  margin-top: 15px;
+  padding-left: 20px;
+}
+
+.about-content li {
+  margin-bottom: 10px;
+}
